@@ -1,0 +1,44 @@
+[window]
+opacity = 0.85
+padding = { x = 10, y = 10 }
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[colors.primary]
+background = "#0a1128"
+foreground = "#d6e8f5"
+
+[colors.normal]
+black   = "#1c2a4a"
+red     = "#e06c75"
+green   = "#7fd9c4"
+yellow  = "#e5e9c4"
+blue    = "#4fc3f7"
+magenta = "#82aaff"
+cyan    = "#00d9ff"
+white   = "#d6e8f5"
+
+[colors.bright]
+black   = "#3a4a6b"
+red     = "#f08fa0"
+green   = "#a0f0d8"
+yellow  = "#f0f0d0"
+blue    = "#7fd4ff"
+magenta = "#a8c4ff"
+cyan    = "#66e8ff"
+white   = "#ffffff"
+
+[cursor]
+style = "Block"
+
+[general]
+live_config_reload = true
+
+[terminal.shell]
+program = "fish"
+args = ["-c", "fastfetch; exec fish"]

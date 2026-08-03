@@ -1,0 +1,79 @@
+* {
+    bg:      #070a1acc;
+    surface: #0c1128ee;
+    text:    #dce9ff;
+    dim:     #6a85b8;
+    glow:    #5b8fff;
+    sel-bg:  #1e2d52;
+}
+
+window {
+    background-color: @bg;
+    border:           0px;
+    border-radius:    12px;
+    width:            480px;
+    location:         center;
+    anchor:           center;
+    padding:          12px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          8px;
+}
+
+inputbar {
+    background-color: @surface;
+    border-radius:    8px;
+    padding:          10px 14px;
+    spacing:          8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @glow;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @text;
+    placeholder:      "search...";
+    placeholder-color: @dim;
+}
+
+listview {
+    background-color: transparent;
+    lines:            8;
+    spacing:          4px;
+    padding:          4px 0px;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    8px;
+    padding:          8px 12px;
+    spacing:          10px;
+    children:         [ element-icon, element-text ];
+}
+
+element selected {
+    background-color: @sel-bg;
+    border:           0px 0px 0px 2px;
+    border-color:     @glow;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             24px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       @text;
+    highlight:        bold #5b8fff;
+}
+
+mode-switcher {
+	enabled: false;
+}
