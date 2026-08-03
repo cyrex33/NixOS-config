@@ -12,7 +12,9 @@
        };
 
 
-       outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+       outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+       in {
 	 nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
 	   system = "x86_64-linux";
 	   modules = [
@@ -26,5 +28,11 @@
 		}
 	     ];
 	   };
-	 };
-     }
+	
+           
+           homeConfigurations.nixos = home-manager.lib.homeManagerConfiguration {
+	    inherit pkgs;
+            modules = [ ./home.nix ];
+          };
+       };
+    }

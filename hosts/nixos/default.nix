@@ -4,6 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
+      ../../system/modules/bspwm.nix
+      ../../system/modules/sxhkd.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -15,7 +17,7 @@
 	automatic = true;
 	dates = "weekly";
 	options = "--delete-older-than 14d";
-  };
+};  
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -24,7 +26,17 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
+  #networking.wireless.iwd.enable = true;
+  #networking.networkmanager.wifi.backend = "iwd";
+
   hardware.enableRedistributableFirmware = true;
+  
+  hardware.firmware = with pkgs; [ linux-firmware ];
+
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+ };	
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -32,6 +44,12 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  services.gvfs.enable = true;
+
+  services.udisks2.enable = true;
+
+  security.polkit.enable = true;
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -45,21 +63,43 @@
 	jetbrains-mono
   ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-  services.displayManager.sddm.enable = true;
 
-  # NVIDIA
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics.enable = true;
   hardware.nvidia = {
-	modesetting.enable = true;
-	open = false;
-	package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  
+        modesetting.enable = true;
+        open = false;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+ };
 
+  services.xserver = {
+     enable = true;
+     displayManager.sddm.enable = true;
+     desktopManager.xfce.enable = true;
+     videoDrivers = [ "nvidia" ];
+
+  # Monitors
+  #config = ''
+    #Section "Monitor"
+        #Identifier "DP-4"
+        #Option "PreferredMode" "2560x1440_240"
+        #Option "TargetRefresh" "240"
+        #EndSection
+
+    #Section "Monitor"
+        #Identifier "HDMI-0"
+        #Option "PreferredMode" "1920x1080_180"
+        #Option "TargetRefresh" "180"
+        #EndSection
+     #'';
+  };
+
+  services.xserver.libinput = {
+    enable = true;
+    mouse = {
+	accelProfile = "flat";
+	accelSpeed = "0";
+	naturalScrolling = false;
+   };
+ }; 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -75,7 +115,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixos = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "networkmanager" "audio" "groups" ]; # Enable ‘sudo’ for the user.
   #   packages = with pkgs; [
   #     tree
   #   ];
@@ -91,21 +131,11 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     fish
-     git
-     alacritty
-     polybar
-     sxhkd
-     dunst
-     flameshot
-     fastfetch
-     rofi
-     picom
-     pkgs.wine
-     discord
+     polkit
      steam
+     git
+     wget
+     pkgs.wine
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
