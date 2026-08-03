@@ -21,18 +21,17 @@
 	htop
 	btop
 	neovim
-        feh
-        thunar
-        polybar
-        zapret
-        nerd-fonts.jetbrains-mono
-        rofi
+    feh
+    thunar
+    polybar
+    nerd-fonts.jetbrains-mono
+    rofi
 	dunst
-        discord
+    discord
   	picom
 	sxhkd
 	flameshot
-        papirus-icon-theme
+    papirus-icon-theme
 	fish
 	wget
      ];
