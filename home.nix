@@ -31,10 +31,16 @@
         nerd-fonts.jetbrains-mono
         rofi
 	dunst
+    feh
+    thunar
+    polybar
+    nerd-fonts.jetbrains-mono
+    rofi
+	dunst
   	picom
 	sxhkd
 	flameshot
-        papirus-icon-theme
+    papirus-icon-theme
 	fish
 	wget
      ];
