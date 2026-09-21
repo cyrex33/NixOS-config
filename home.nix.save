@@ -1,3 +1,4 @@
+
 { config, pkgs, ... }:
 
 
@@ -9,28 +10,28 @@
    home.packages = with pkgs; [
 	git
 	vim
-        #starship
+        starship
 	firefox
 	alacritty
         capitaine-cursors
         lufus
-        #legcord
-        easyeffects
-        vesktop 
         bibata-cursors
         shadps4-qtlauncher
         protonplus
+        mtprotoproxy
 	curl
 	fastfetch
 	htop
 	btop
 	neovim
+        mangohud
         feh
         thunar
         polybar
         nerd-fonts.jetbrains-mono
         rofi
 	dunst
+        discord
   	picom
 	sxhkd
 	flameshot

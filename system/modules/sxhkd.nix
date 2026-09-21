@@ -11,10 +11,13 @@
         alacritty
 
       super + d
-        rofi -show run
+        rofi -show drun
 
       super + q
         bspc node -c
+
+      super + c
+        bspc node -k
 
       super + f
         bspc node -t fullscreen

@@ -1,3 +1,4 @@
+
 { config, lib, pkgs, ... }:
 
 {
@@ -12,6 +13,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 1;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   nix.gc = {
 	automatic = true;
@@ -23,22 +25,73 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  # Configure network connections interactively with nmcli or nmtui.
+  networking.networkmanager.dns = "none";
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
   networking.networkmanager.enable = true;
+  #networking.useDHCP = true;
+  networking.networkmanager.wifi.powersave = false;
+  #networking.enableIPv6 = false;
+  networking.networkmanager.wifi.scanRandMacAddress = false;
+  #networking.wireless.athUserRegulatoryDomain = "RU";
 
-  #networking.wireless.iwd.enable = true;
-  #networking.networkmanager.wifi.backend = "iwd";
+  #networking.networkmanager.settings = {
+    #device = {
+      #"wifi.scan-rand-mac-address" = "no";
+    #};
+    #connection = {
+      #"wifi.bgscan" = "off";
+ #};
+ #};
+  boot.extraModprobeConfig = ''
+    options mt76_usb disable_usb_aspm=1
+    options mt76_connac_core disable_amsdu=1
+    options mt76_core disable_aspm=1
+  '';
 
   hardware.enableRedistributableFirmware = true;
+
+  hardware.pulseaudio.enable = false;
+  
+  security.rtkit.enable = true;
+
+  #services.resolved.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    extraLadspaPackages = [ pkgs.deepfilternet ];
+  };
   
   hardware.firmware = with pkgs; [ linux-firmware ];
+ 
+  nix.settings = {
+    substituters = [
+       "https://nixos-cache-proxy.cofob.dev"
+       "https://cache-nixos.org"
+    ];
+    http-connections = 128;
+    max-substitution-jobs = 128;
+  };
 
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
  };	
 
-  # Set your time zone.
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  programs.gamemode.enable = true;
+
+  nix.settings = {
+    auto-optimise-store = true;
+    max-jobs = "auto";
+    cores = 8;
+ };
+
+  boot.cleanTmpDir = true;
+
   time.timeZone = "Europe/Moscow";
 
   # Configure network proxy if necessary
@@ -46,18 +99,20 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   services.gvfs.enable = true;
-
   services.udisks2.enable = true;
-
+  services.tumbler.enable = true;
   security.polkit.enable = true;
 
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  services.flatpak.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      # pkgs.xdg-desktop-portal-wlr  # For wlroots/sway/etc. if needed
+    ];
+    config.common.default = "gtk";
+  };
 
   fonts.packages = with pkgs; [
 	jetbrains-mono
@@ -69,27 +124,32 @@
         open = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
  };
+  
+  environment.sessionVariables = {
+  __GL_SYNC_DISPLAY_DEVICE = "DP-4"; 
+  __GL_VDPAU_LOG_FLUSH = "1";
+  __GL_SYNC_TO_VBLANK = "0";
+ };
+  
+  fileSystems."/mnt/storage" = {
+       device = "/dev/sda3";
+       fsType = "ext4";
+       options = [ "defaults" "nofail" "exec" ];
+ };
 
   services.xserver = {
      enable = true;
      displayManager.sddm.enable = true;
-     desktopManager.xfce.enable = true;
+     desktopManager.xfce.enable = false;
      videoDrivers = [ "nvidia" ];
 
-  # Monitors
-  #config = ''
-    #Section "Monitor"
-        #Identifier "DP-4"
-        #Option "PreferredMode" "2560x1440_240"
-        #Option "TargetRefresh" "240"
-        #EndSection
+     displayManager.setupCommands = ''
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --mode 2560x1440 --rate 240.00
+  '';
+  };
 
-    #Section "Monitor"
-        #Identifier "HDMI-0"
-        #Option "PreferredMode" "1920x1080_180"
-        #Option "TargetRefresh" "180"
-        #EndSection
-     #'';
+  services.lact = {
+    enable = true;
   };
 
   services.xserver.libinput = {
@@ -100,10 +160,6 @@
 	naturalScrolling = false;
    };
  }; 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
@@ -112,27 +168,30 @@
   #   pulse.enable = true;
   # };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixos = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "audio" "groups" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
+     extraGroups = [ "wheel" "networkmanager" "audio" "groups" "libvirtd"  ]; # Enable ‘sudo’ for the user.
   };
 
   programs.firefox.enable = true;
 
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
- 
   nixpkgs.config.allowUnfree = true; 
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  environment.sessionVariables = {
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    NVD_BACKEND = "direct";
+   };
+
   environment.systemPackages = with pkgs; [
+     pkgs.polkit_gnome
      polkit
+     nvidia-vaapi-driver
      steam
+     bottles
+     ntfs3g
+     pavucontrol
      git
      wget
      pkgs.wine
@@ -180,6 +239,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }
 
