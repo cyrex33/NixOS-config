@@ -10,14 +10,11 @@
        "https://nixos-cache-proxy.cofob.dev"
        "https://cache-nixos.org"
     ];
-    http-connections = 128;
-    max-substitution-jobs = 128;
   };
 
   nix.settings = {
     auto-optimise-store = true;
     max-jobs = "auto";
-    cores = 8;
  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -32,6 +29,6 @@
 
   users.users.nixos = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "audio" "groups" "libvirtd"  ];
+     extraGroups = [ "wheel" "networkmanager" "audio" "libvirtd"  ];
   };
 }

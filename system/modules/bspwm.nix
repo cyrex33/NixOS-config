@@ -6,8 +6,8 @@
     configFile = pkgs.writeShellScript "bspwmrc" ''
       #!/usr/bin/env bash
 
-      /nix/store/ngijzsiav4hixpk0ija40a1g98zf7xdi-polkit-gnome-0.105/libexec/polkit-gnome-authentication-agent-1 &
- 
+      ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+  
       exec > ~/.cache/bspwmrc.log 2>&1
       set -x
 
@@ -37,7 +37,6 @@
       bspc config gapless_monocle       true
       bspc config focus_follows_pointer true     
 
-      sleep 2
       polybar left & polybar center & polybar right &
     '';
 
