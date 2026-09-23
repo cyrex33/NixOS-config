@@ -16,6 +16,7 @@
         lufus
         #legcord
         easyeffects
+        heroic
         vesktop 
         bibata-cursors
         shadps4-qtlauncher

@@ -37,6 +37,7 @@
       bspc config gapless_monocle       true
       bspc config focus_follows_pointer true     
 
+      sleep 2
       polybar left & polybar center & polybar right &
     '';
 
