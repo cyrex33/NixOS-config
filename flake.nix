@@ -22,7 +22,6 @@
 	   system = "x86_64-linux";
 	   modules = [
 		./hosts/nixos/default.nix
-		./hosts/nixos/hardware.nix
                 #zapret-discord-youtube.nixosModules
 		home-manager.nixosModules.home-manager
 		{
@@ -42,9 +41,9 @@
 	   };
 	
            
-           homeConfigurations.nixos = home-manager.lib.homeManagerConfiguration {
-	    inherit pkgs;
-            modules = [ ./home.nix ];
-          };
+           #homeConfigurations.nixos = home-manager.lib.homeManagerConfiguration {
+	    #inherit pkgs;
+            #modules = [ ./home.nix ];
+          #};
        };
     }

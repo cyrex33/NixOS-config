@@ -9,7 +9,6 @@
    home.packages = with pkgs; [
 	git
 	vim
-        #starship
 	firefox
 	alacritty
         capitaine-cursors
@@ -19,7 +18,6 @@
         heroic
         vesktop 
         bibata-cursors
-        shadps4-qtlauncher
         protonplus
 	curl
 	fastfetch
@@ -31,12 +29,6 @@
         polybar
         nerd-fonts.jetbrains-mono
         rofi
-	dunst
-    feh
-    thunar
-    polybar
-    nerd-fonts.jetbrains-mono
-    rofi
 	dunst
   	picom
 	sxhkd
@@ -51,10 +43,6 @@
          enable = true;
          script = "polybar main &";
      };
-
-       #picom = {
-         #enable = true;
-    
 
      }; 
      programs.bash = {
