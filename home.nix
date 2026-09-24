@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 
 {
    home.username = "nixos";
@@ -51,17 +50,15 @@
          enable = true;
          script = "polybar main &";
      };
+    }; 
 
-     }; 
-     #programs.bash = {
-	#enable = true;
-	#shellAliases = {
-	   #rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#nixos";
-     #};
-     #initExtra = ''
-	#eval "$(starship init bash)"
-      #'';
-   #};
+     home.file = {
+        ".config/alacritty/alacritty.toml" .source = ./dotfiles/alacritty/alacritty.toml; 
+        ".config/picom/picom.conf" .source = ./dotfiles/picom/picom.conf; 
+        ".config/polybar/config.ini" .source = ./dotfiles/polybar/config.ini; 
+        ".config/rofi/config.rasi" .source = ./dotfiles/rofi/config.rasi; 
+        ".config/rofi/winter.rasi" .source = ./dotfiles/rofi/winter.rasi; 
+      };
 
      home.file.".Xresources".text = ''
 	Xcursor.theme: Bibata-Modern-Classic

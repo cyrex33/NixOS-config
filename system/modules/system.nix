@@ -12,6 +12,8 @@
     ];
   };
 
+  time.timeZone = "Europe/Moscow";
+
   nix.settings = {
     auto-optimise-store = true;
     max-jobs = "auto";

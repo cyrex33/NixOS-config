@@ -21,11 +21,6 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  #networking.useDHCP = true;
-  #networking.enableIPv6 = false;
-  #networking.wireless.athUserRegulatoryDomain = "RU";
-  time.timeZone = "Europe/Moscow";
-
   programs.firefox.enable = true;
 
   #environment.sessionVariables = {
