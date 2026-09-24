@@ -19,7 +19,7 @@
 
       xsetroot -solid "#2E3440" &
 
-      nvidia-settings -a CurrentMetaMode = "DP-4: 2560x1440_240 { ForceFullCompositionPipeline = On }, HDMI-0: 1920x1080_180 { ForceFullCompositionPipeline = On }"
+      nvidia-settings -a CurrentMetaMode = "DP-4: 2560x1440_240 #HDMI-0: 1920x1080_180 { ForceFullCompositionPipeline = On }"
 
       feh --bg-scale ~/Downloads/mountains.jpg
 

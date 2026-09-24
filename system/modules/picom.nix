@@ -37,7 +37,7 @@
       fade-out-step = 0.03;
 
       # Закругление углов
-      corner-radius = 10.0;
+      corner-radius = 0.0;
       rounded-corners-exclude = [
         "class_g ?= 'Polybar'"
       ];

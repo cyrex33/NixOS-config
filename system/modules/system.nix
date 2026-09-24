@@ -21,10 +21,6 @@
 
   services.flatpak.enable = true;
 
-  services.lact = {
-    enable = true;
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   users.users.nixos = {

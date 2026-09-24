@@ -5,6 +5,10 @@
    home.username = "nixos";
    home.homeDirectory = "/home/nixos";
    home.stateVersion = "26.05";
+
+   home.sessionVariables = {
+     PATH = "$HOME/.local/bin:$PATH";
+   };
   
    home.packages = with pkgs; [
 	git
@@ -14,6 +18,10 @@
         capitaine-cursors
         lufus
         #legcord
+        gamescope
+        gamescope-wsi
+        pipx
+        mangohud
         easyeffects
         heroic
         vesktop 
@@ -45,15 +53,15 @@
      };
 
      }; 
-     programs.bash = {
-	enable = true;
-	shellAliases = {
-	   rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#nixos";
-     };
-     initExtra = ''
-	eval "$(starship init bash)"
-      '';
-   };
+     #programs.bash = {
+	#enable = true;
+	#shellAliases = {
+	   #rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#nixos";
+     #};
+     #initExtra = ''
+	#eval "$(starship init bash)"
+      #'';
+   #};
 
      home.file.".Xresources".text = ''
 	Xcursor.theme: Bibata-Modern-Classic

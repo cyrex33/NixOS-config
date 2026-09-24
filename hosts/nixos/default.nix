@@ -37,6 +37,8 @@
      pkgs.polkit_gnome
      polkit
      nvidia-vaapi-driver
+     qbittorrent
+     krb5
      steam
      bottles
      ntfs3g
