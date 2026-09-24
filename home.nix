@@ -53,12 +53,21 @@
     }; 
 
      home.file = {
-        ".config/alacritty/alacritty.toml" .source = ./dotfiles/alacritty/alacritty.toml; 
-        ".config/picom/picom.conf" .source = ./dotfiles/picom/picom.conf; 
-        ".config/polybar/config.ini" .source = ./dotfiles/polybar/config.ini; 
+        ".config/alacritty/alacritty.toml" = {
+             source = ./dotfiles/alacritty/alacritty.toml;
+             force = true;
+      }; 
+        ".config/picom/picom.conf" = { 
+             source = ./dotfiles/picom/picom.conf; 
+             force = true;
+      };
+        ".config/polybar/config.ini" = {
+             source = ./dotfiles/polybar/config.ini; 
+             force = true;
+      };
         ".config/rofi/config.rasi" .source = ./dotfiles/rofi/config.rasi; 
         ".config/rofi/winter.rasi" .source = ./dotfiles/rofi/winter.rasi; 
-      };
+     };
 
      home.file.".Xresources".text = ''
 	Xcursor.theme: Bibata-Modern-Classic
