@@ -16,6 +16,7 @@
 	alacritty
         capitaine-cursors
         lufus
+        telegram-desktop
         #legcord
         gamescope
         gamescope-wsi
