@@ -45,13 +45,6 @@
 	wget
      ];
      
-     services = {
-       polybar = {
-         enable = true;
-         script = "polybar main &";
-     };
-    }; 
-
      home.file = {
         ".config/alacritty/alacritty.toml" = {
              source = ./dotfiles/alacritty/alacritty.toml;

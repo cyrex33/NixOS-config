@@ -17,6 +17,10 @@
       
       sxhkd &
 
+      xset s off
+      xset -dpms
+      xset s noblank
+
       xsetroot -solid "#2E3440" &
 
       nvidia-settings -a CurrentMetaMode = "DP-4: 2560x1440_240 #HDMI-0: 1920x1080_180 { ForceFullCompositionPipeline = On }"
@@ -37,7 +41,7 @@
       bspc config gapless_monocle       true
       bspc config focus_follows_pointer true     
 
-      polybar left & polybar center & polybar right &
+      #polybar left & polybar center & polybar right &
     '';
 
   };
