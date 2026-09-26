@@ -11,8 +11,6 @@
   
    home.packages = with pkgs; [
 	git
-	vim
-	firefox
 	alacritty
         capitaine-cursors
         lufus

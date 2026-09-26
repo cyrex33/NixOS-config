@@ -33,8 +33,6 @@
      ntfs3g
      pavucontrol
      cloudflare-warp
-     git
-     wget
      wine
   ];
 
