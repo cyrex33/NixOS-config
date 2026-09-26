@@ -46,22 +46,14 @@
 	wget
      ];
      
-     home.file = {
-        ".config/alacritty/alacritty.toml" = {
-             source = ./dotfiles/alacritty/alacritty.toml;
-             force = true;
-      }; 
-        ".config/picom/picom.conf" = { 
-             source = ./dotfiles/picom/picom.conf; 
-             force = true;
+     xdg.configFile = {
+ 	 "alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
+ 	 "picom/picom.conf".source = ./dotfiles/picom/picom.conf;
+         "fish/config.fish".source = ./dotfiles/fish/config.fish; 
+	 "polybar/config.ini".source = ./dotfiles/polybar/config.ini;
+ 	 "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
+ 	 "rofi/winter.rasi".source = ./dotfiles/rofi/winter.rasi;
       };
-        ".config/polybar/config.ini" = {
-             source = ./dotfiles/polybar/config.ini; 
-             force = true;
-      };
-        ".config/rofi/config.rasi" .source = ./dotfiles/rofi/config.rasi; 
-        ".config/rofi/winter.rasi" .source = ./dotfiles/rofi/winter.rasi; 
-     };
 
      home.file.".Xresources".text = ''
 	Xcursor.theme: Bibata-Modern-Classic
