@@ -10,17 +10,14 @@
        "https://nixos-cache-proxy.cofob.dev"
        "https://cache-nixos.org"
     ];
+
+    auto-optimise-store = true;
+    max-jobs = "auto";
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   time.timeZone = "Europe/Moscow";
-
-  nix.settings = {
-    auto-optimise-store = true;
-    max-jobs = "auto";
- };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+	
   services.flatpak.enable = true;
 
   nixpkgs.config.allowUnfree = true;
