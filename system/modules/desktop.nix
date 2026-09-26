@@ -6,10 +6,6 @@
      displayManager.sddm.enable = true;
      desktopManager.xfce.enable = false;
    };
-  #displayManager.setupCommands = ''
-    #${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --mode 2560x1440 --rate 240.00
-  #'';
-  #};
 
   services.xserver.libinput = {
     enable = true;
