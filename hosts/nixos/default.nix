@@ -25,13 +25,9 @@
 
   environment.systemPackages = with pkgs; [
      polkit_gnome
-     polkit
      nvidia-vaapi-driver
-     qbittorrent
      krb5
-     steam
      ntfs3g
-     pavucontrol
      cloudflare-warp
      wine
   ];

@@ -13,6 +13,9 @@
         capitaine-cursors
         lufus
         telegram-desktop
+        qbittorrent
+        wine
+        pavucontrol
         #legcord
         gamescope
         gamescope-wsi
