@@ -8,12 +8,16 @@
   nix.settings = {
     substituters = [
        "https://nixos-cache-proxy.cofob.dev"
-       "https://cache-nixos.org"
     ];
 
     auto-optimise-store = true;
     max-jobs = "auto";
     experimental-features = [ "nix-command" "flakes" ];
+  };
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
   };
 
   time.timeZone = "Europe/Moscow";

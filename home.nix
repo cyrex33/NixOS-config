@@ -5,9 +5,7 @@
    home.homeDirectory = "/home/nixos";
    home.stateVersion = "26.05";
 
-   home.sessionVariables = {
-     PATH = "$HOME/.local/bin:$PATH";
-   };
+   home.sessionPath = [ "$HOME/.local/bin" ];
   
    home.packages = with pkgs; [
 	git

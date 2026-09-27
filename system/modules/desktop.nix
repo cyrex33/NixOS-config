@@ -4,10 +4,9 @@
   services.xserver = {
      enable = true;
      displayManager.sddm.enable = true;
-     desktopManager.xfce.enable = false;
    };
 
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     mouse = {
         accelProfile = "flat";
