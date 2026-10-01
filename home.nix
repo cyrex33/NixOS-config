@@ -37,10 +37,12 @@
     dunst
     picom
     sxhkd
-    flameshot
+    #flameshot
     papirus-icon-theme
     wget
   ];
+
+  home.file."Pictures/wallpapers".source = ./assets/wallpapers;
 
   xdg.configFile = {
     "alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
@@ -49,7 +51,6 @@
     "polybar/config.ini".source = ./dotfiles/polybar/config.ini;
     "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
     "rofi/winter.rasi".source = ./dotfiles/rofi/winter.rasi;
-    "Pictures/wallpapers".source = ./assets/wallpapers;
   };
 
   programs.fish = {

@@ -20,7 +20,7 @@
         bspc node -k
 
       super + f
-        bspc node -t fullscreen
+        bspc node -t ~fullscreen
 
       super + t
         bspc node -t tiled
@@ -57,6 +57,18 @@
 
       super + shift + l
         bspc node -s east
+
+      super + shift + s
+        flameshot gui
+
+      XF86AudioRaiseVolume
+        wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
+
+      XF86AudioLowerVolume
+        wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-
+
+      XF86AudioMute
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     '';
   };
 }

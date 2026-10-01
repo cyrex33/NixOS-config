@@ -26,6 +26,7 @@
 
   environment.systemPackages = with pkgs; [
     polkit_gnome
+    flameshot
     krb5
     nixfmt
   ];
