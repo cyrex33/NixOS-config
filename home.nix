@@ -1,66 +1,65 @@
 { pkgs, ... }:
 
 {
-   home.username = "nixos";
-   home.homeDirectory = "/home/nixos";
-   home.stateVersion = "26.05";
+  home.username = "nixos";
+  home.homeDirectory = "/home/nixos";
+  home.stateVersion = "26.05";
 
-   home.sessionPath = [ "$HOME/.local/bin" ];
-  
-   home.packages = with pkgs; [
-	git
-	alacritty
-        capitaine-cursors
-        lufus
-        telegram-desktop
-        qbittorrent
-        wine
-        pavucontrol
-        #legcord
-        gamescope
-        gamescope-wsi
-        pipx
-        mangohud
-        easyeffects
-        heroic
-        vesktop 
-        bibata-cursors
-        protonplus
-	curl
-	fastfetch
-	htop
-	btop
-	neovim
-        feh
-        thunar
-        polybar
-        nerd-fonts.jetbrains-mono
-        rofi
-	dunst
-  	picom
-	sxhkd
-	flameshot
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
+  home.packages = with pkgs; [
+    git
+    alacritty
+    capitaine-cursors
+    lufus
+    telegram-desktop
+    qbittorrent
+    wine
+    pavucontrol
+    gamescope
+    pipx
+    mangohud
+    easyeffects
+    heroic
+    vesktop
+    bibata-cursors
+    protonplus
+    curl
+    fastfetch
+    htop
+    btop
+    neovim
+    feh
+    thunar
+    polybar
+    nerd-fonts.jetbrains-mono
+    rofi
+    dunst
+    picom
+    sxhkd
+    flameshot
     papirus-icon-theme
-	fish
-	wget
-     ];
-     
-     xdg.configFile = {
- 	 "alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
- 	 "picom/picom.conf".source = ./dotfiles/picom/picom.conf;
-         "fish/config.fish".source = ./dotfiles/fish/config.fish; 
-	 "polybar/config.ini".source = ./dotfiles/polybar/config.ini;
- 	 "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
- 	 "rofi/winter.rasi".source = ./dotfiles/rofi/winter.rasi;
-      };
+    fish
+    wget
+  ];
 
-     home.file.".Xresources".text = ''
-	Xcursor.theme: Bibata-Modern-Classic
-	Xcursor.size: 20
-      '';	
+  xdg.configFile = {
+    "alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
+    "picom/picom.conf".source = ./dotfiles/picom/picom.conf;
+    "fish/config.fish".source = ./dotfiles/fish/config.fish;
+    "polybar/config.ini".source = ./dotfiles/polybar/config.ini;
+    "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
+    "rofi/winter.rasi".source = ./dotfiles/rofi/winter.rasi;
+  };
 
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 20;
+    x11.enable = true;
+    gtk.enable = true;
+  };
 
-     programs.home-manager.enable = true;
-   }
-
-
+  programs.home-manager.enable = true;
+}

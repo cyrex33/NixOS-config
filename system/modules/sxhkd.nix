@@ -2,7 +2,7 @@
 
 {
   services.xserver.windowManager.bspwm.sxhkd = {
-    configFile = pkgs.writeShellScript "sxhkdrc" ''
+    configFile = pkgs.writeText "sxhkdrc" ''
 
       super + shift + r
         bspc wm -r
