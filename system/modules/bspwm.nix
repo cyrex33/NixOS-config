@@ -9,11 +9,10 @@
       ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
   
       exec > ~/.cache/bspwmrc.log 2>&1
-      #set -x
 
       #alacritty &
 
-      #sxhkd &
+      picom &
 
       xset s off
       xset -dpms
@@ -21,9 +20,9 @@
 
       xsetroot -solid "#2E3440" &
 
-      --assign CurrentMetaMode="DP-4": 2560x1440_240 +0+0
+      nvidia-settings --assign CurrentMetaMode="DP-4": 2560x1440_240 +0+0
 
-      feh --bg-scale ~/Downloads/mountains.jpg
+      feh --bg-scale ${../../assets/wallpapers/mountains.jpg}
 
       bspc monitor -d 1 2 3 4 5 6 7 8 9
  
@@ -36,6 +35,7 @@
       bspc config gapless_monocle       true
       bspc config focus_follows_pointer true     
 
+      sleep 3
       polybar left & polybar center & polybar right &
     '';
 

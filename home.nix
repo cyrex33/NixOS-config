@@ -39,17 +39,27 @@
     sxhkd
     flameshot
     papirus-icon-theme
-    fish
     wget
   ];
 
   xdg.configFile = {
     "alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
     "picom/picom.conf".source = ./dotfiles/picom/picom.conf;
-    "fish/config.fish".source = ./dotfiles/fish/config.fish;
+    #"fish/config.fish".source = ./dotfiles/fish/config.fish;
     "polybar/config.ini".source = ./dotfiles/polybar/config.ini;
     "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
     "rofi/winter.rasi".source = ./dotfiles/rofi/winter.rasi;
+    "Pictures/wallpapers".source = ./assets/wallpapers;
+  };
+
+  programs.fish = {
+    enable = true;
+    plugins = [
+      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+  ];
+  interactiveShellInit = ''
+    fastfetch
+  '';
   };
 
   home.pointerCursor = {

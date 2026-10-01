@@ -41,4 +41,3 @@ live_config_reload = true
 
 [terminal.shell]
 program = "fish"
-args = ["-c", "fastfetch; exec fish"]
